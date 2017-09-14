@@ -1,0 +1,23 @@
+Recommendations for how to Improve the Project:
+
+1. Proto3.js wokrs but is fragile in its current state. 
+	- See if it is possible to use an API call to validate screennames before pushing to main account
+	- Add the ability for the user to add and/or delete multiple screenames at one time before needing to run proto3.js
+
+2. Web Page Search Function
+	- Format the output of the search function to show each result on a new line rather that split with underscores
+
+3. Twitter and Database Account
+	- The database and twitter accounts for this project are attached to a personal email account. The database might be alright but
+	  the twitter account will not remain accessable after the conclusion of this semester. It may be possible to transfer the privileges.
+          If this is something you would like to pursue please contact me at vwil311@yahoo.com.
+
+4. File Names
+	- The names of the files do not reflect their purpose closesly enough (proto1.js, proto2.js, proto3.js). Changes these names and 
+	  thoroughly test the entire application to ensure functionality.
+
+5. Database "Symbol" Element
+	- In the database, there is a spacing named "symbol" that is being defaulted to "none" and is not currently being utilized. It was originally
+	  intended to help facilitate the search function but was later deprecated for a better method. Either remove this element or find some other 
+          way to utilize it and repopulate the database with correctly formatted tweets.
+

@@ -1,0 +1,26 @@
+body {
+    background-color: #84bd00;
+    /*background-image: url("http://bestanimations.com/Money/money-animated-gif-9.gif");*/
+}
+
+h1 {
+    color: purple;
+    
+    font-family: "Courier New", Times, serif; 
+    
+    margin-left: 40px;
+}
+h2 {
+    color: purple;
+    margin-left: 40px;
+    position: abosolute;
+    left: 141px;
+    font-family: "Courier New", Times, serif; 
+    
+}
+#fluid-container {
+	color: purple;
+    margin-left: 40px;
+    font-family: "Courier New", Times, serif; 
+    
+}
