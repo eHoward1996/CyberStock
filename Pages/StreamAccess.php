@@ -9,13 +9,13 @@
 		<div id="stream">
 			<?php
 				require __DIR__. '../../vendor/autoload.php';
+				include __DIR__. '../PersistentVars.php';
 
 				use Spatie\TwitterStreamingApi\PublicStream;
 				use Scheb\YahooFinanceApi\ApiClient;
 				use Scheb\YahooFinanceApi\ApiClientFactory;
 				use GuzzleHttp\Client;
 
-				// Global vars
 				//@washingtonpost, 2467791
 				//@business, 34713362
 				//@YahooFinance, 19546277
@@ -26,13 +26,10 @@
 				]);
 				$alreadyPrinted = array();
 
-				//Connect to MongoDB client, select the db and collection
-				session_start();
-				$m =  new MongoDB\Client;
-				$_SESSION['db'] = $m->Tweetdemo;
-
-				$tweetFeed = $_SESSION['db']->selectCollection('tweetfeed');
-				$companyList = iterator_to_array($_SESSION['db']->selectCollection('companies')->find());
+				// Persistant Variables
+				$initTweets = $tweetFeedFirstTweets;
+				$companyList = $fortune5CompanyList;
+				$tweetStream = $stream;
 
 				function formatCompanyName($longCompanyName)	{
 					$shortCompanyName = '';
@@ -77,6 +74,8 @@
 										");
 									</script>\n";
 						echo $script;
+						ob_flush();
+						flush();
 					}
 				}
 
@@ -110,12 +109,7 @@
 				}
 
 				function getInitialTweets()	{
-					$firstTweets = iterator_to_array($GLOBALS['tweetFeed']->find([],[
-						'limit'     => 100,
-						'maxTimeMS' => 1000
-					]));
-
-					foreach ($firstTweets as $tweet) {
+					foreach ($GLOBALS['initTweets'] as $tweet) {
 						$u = $tweet['Screen_Name'];
 						$t = $tweet['Text'];
 
@@ -136,39 +130,23 @@
 					//Insert tweet into database
 					if (in_array($tweet['user']['id'], $users))	{
 						$doc = $GLOBALS['tweetFeed']->insertOne([
-								"Screen_Name" => $username,
-								"Screen_Id" => $tweet['user']['id'],
-								"Text" => $text,
-								"Time" => date("Y-m-d H:i:s")
+							"Screen_Name" => $username,
+							"Screen_Id" => $tweet['user']['id'],
+							"Text" => $text,
+							"Time" => date("Y-m-d H:i:s")
 						]);
 					}
 				}
 
 				function startStream()	{
 					$users = $GLOBALS['UsersToFollow']['follow'];
-
-					$consumerKey    	= '2iwAwSG6tzD12EtWSI7QUc8H2';
-					$consumerSecret 	= 'Y6KeSGp2LzEeM8FecE4YcKnpoI2ie1n2v8mftH46uz4h4c7ig4';
-					$accessToken        = '828704970593673217-fpjQo9kpuJ7dLSMtmmbPnPxRmo1OCEo';
-					$accessTokenSecret  = 'SHHc9AvOBWVPGJdzyZQ5G5zOcHa6YR7wKoqyE2Lqjby5x';
-
-					PublicStream::create(
-					    $accessToken,
-					    $accessTokenSecret,
-					    $consumerKey,
-					    $consumerSecret
-					)->whenTweets(
+					$GLOBALS['tweetStream']->whenTweets(
 						$users,
 						'streaming_callback'
 					)->startListening();
 				}
 
 				getInitialTweets();
-
-				ob_flush();
-			   	flush();
-
-    			// Start tweet stream
 				startStream();
 			?>
 			<span></span>

@@ -7,7 +7,7 @@
 		?>
 	</head>
 
-	<body onload="LoadSetup()">
+	<body onload="LoadSetup()" style="margin: 2% 5% 2% 5%;">
 		<center>
 			<form action="Search.php" method="POST" id="searchFrame" target="search">
 				<input type="text" name="sText" style="width: 25%;">
@@ -21,7 +21,5 @@
 				<iframe name="stream" id="streamOutput" frameborder="0"></iframe>
 			</form>
 		</center>
-
-
 	</body>
 </html>

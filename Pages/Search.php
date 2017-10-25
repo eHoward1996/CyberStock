@@ -3,23 +3,25 @@
 		<?php
 			echo "<link rel='stylesheet' type='text/css' href='mainStyle.css' />";
 			echo "<script src='mainScripts.js'></script>";
-
-			$companyList = iterator_to_array($_SESSION['db']->selectCollection('companies')->find());
 		?>
 	</head>
 	<body>
 		<div id="stream">
 			<?php
+				echo 'Loading stream for ' . $_POST['sText'] . '...';
+				ob_flush();
+				flush();
+
 				require __DIR__. '../../vendor/autoload.php';
+				include __DIR__. '../PersistentVars.php';
 
 				use Spatie\TwitterStreamingApi\PublicStream;
 				use Scheb\YahooFinanceApi\ApiClient;
 				use Scheb\YahooFinanceApi\ApiClientFactory;
 				use GuzzleHttp\Client;
 
-				echo 'Loading stream for ' . $_POST['sText'] . '...';
-				ob_flush();
-				flush();
+				$tweetStream = $stream;
+				$companyList = $fortune5CompanyList;
 
 				function formatCompanyName($longCompanyName)	{
 					$shortCompanyName = '';
@@ -64,12 +66,18 @@
 										");
 									</script>\n";
 						echo $script;
+						ob_flush();
+						flush();
 					}
 				}
 
 				function printToScreen($u, $t)	{
 					$t = addslashes($t);
 					$t = preg_replace( "/\r|\n/", "", $t);
+
+					$s = ''; // Company Symbol
+					$c = ''; // Percent Change in stock
+					$n = ''; // Company Name
 
 					$client = ApiClientFactory::createApiClient();
 
@@ -82,9 +90,6 @@
 							$shortCompanyName = 'GM';
 						}
 
-						$s = '';
-						$c = '';
-						$n = '';
 						if (strpos($t, $shortCompanyName) !== false)	{
 							$s = $company['Symbol'];
 							$q = $client->getQuote($s);
@@ -104,17 +109,7 @@
 				}
 
 				function startStream()	{
-					$consumerKey    	= '2iwAwSG6tzD12EtWSI7QUc8H2';
-					$consumerSecret 	= 'Y6KeSGp2LzEeM8FecE4YcKnpoI2ie1n2v8mftH46uz4h4c7ig4';
-					$accessToken        = '828704970593673217-fpjQo9kpuJ7dLSMtmmbPnPxRmo1OCEo';
-					$accessTokenSecret  = 'SHHc9AvOBWVPGJdzyZQ5G5zOcHa6YR7wKoqyE2Lqjby5x';
-
-					PublicStream::create(
-					    $accessToken,
-					    $accessTokenSecret,
-					    $consumerKey,
-					    $consumerSecret
-					)->whenHears(
+					$GLOBALS['tweetStream']->whenHears(
 						$_POST['sText'],
 						'streaming_callback'
 					)->startListening();
