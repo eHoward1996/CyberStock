@@ -1,0 +1,7 @@
+{
+    "require": {
+        "spatie/twitter-streaming-api": "^1.2",
+        "mongodb/mongodb": "1.0.0",
+        "scheb/yahoo-finance-api": "^2.1"
+    }
+}
