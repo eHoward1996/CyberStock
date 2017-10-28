@@ -128,7 +128,7 @@
 							$shortCompanyName = 'GM';
 						}
 
-						if (strpos($t, $shortCompanyName) !== false)	{
+						if (strpos(strtoupper($t), " ". strtoupper($shortCompanyName) . " ") !== false)	{
 							$s = $company['Symbol'];
 							$q = $client->getQuote($s);
 							$c = $q->getPercentChange();

@@ -3,15 +3,6 @@
 // not visible.
 function LoadSetup()	{
 	document.getElementById('streamFrame').submit();
-	document.getElementById('searchOutput').style.display = 'none';
-}
-
-// When the user clicks the search button
-// stop displayng the initial stream and
-// display the search stream.
-function searchVisibility()	{
-	document.getElementById('searchOutput').style.display = 'block';
-	document.getElementById('streamOutput').style.display = 'none';
 }
 
 // This function allows all the tweets to
