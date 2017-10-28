@@ -1,13 +1,31 @@
+// This function is called in TwitterFingerz.php to
+// initialize the stream and make the search stream
+// not visible.
 function LoadSetup()	{
 	document.getElementById('streamFrame').submit();
 	document.getElementById('searchOutput').style.display = 'none';
 }
 
+// When the user clicks the search button
+// stop displayng the initial stream and
+// display the search stream.
 function searchVisibility()	{
 	document.getElementById('searchOutput').style.display = 'block';
 	document.getElementById('streamOutput').style.display = 'none';
 }
 
+// This function allows all the tweets to
+// be added at the top of the stream as
+// opposed to the bottom. Also adds hyperlinks
+// if the text contains "https://". Adds
+// stock symbols and stock percent change if
+// the tweet contains the name of a fortune 500
+// company. If the text contains the name of a
+// fortune 500 company the percent change
+// will be colored red or green based on whether
+// there was an increase or decrease in sales.
+// Formats tweet seperation with a line break (<br>)
+// and a horizontal rule (<hr>)
 function AddTweetsAtTop(username, text, stockName, stockSymbol, stockChange)	{
 	var pTweet = document.createElement("p");
 	pTweet.className = "tweet";
