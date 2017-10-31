@@ -129,7 +129,7 @@
 							$shortCompanyName = 'GM';
 						}
 
-						if (strpos(strtoupper($t), strtoupper($shortCompanyName)) !== false)	{
+						if (strpos(strtoupper($t), strtoupper($shortCompanyName) . " ") !== false)	{
 							$s = $company['Symbol'];
 							$q = $client->getQuote($s);
 							$c = $q->getPercentChange();
@@ -195,15 +195,8 @@
 				}
 
 				getInitialTweets();
-				// startStream();
-				// if (strpos(strtoupper("Google hires veteran GOP lobbyists https://t.co/LP5LAZYQ8k"), strtoupper('Google')) !== false)	{
-				// 	echo 'true';
-				// }
-				// else {
-				// 	echo 'false';
-				// }
-				// ob_flush();
-				// flush();
+				startStream();
+
 			?>
 			<span></span>
 		</div>
