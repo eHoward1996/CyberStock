@@ -10,10 +10,11 @@
 	<!--
 		LoadSetup() submits the (streamFrame) form to start the stream on page load.
 	-->
-	<body onload="LoadSetup()" style="background-color: white;">
+	<body onload="LoadSetup()" style="background: linear-gradient(white, #0086b3);">
 		<center>
+			<img src="../Misc/CyberSymbol.png" alt="CyberStock" width="500px" height="17%"/>
 			<div class="tabs">
-				<div class="tab" onclick="LoadSetup()"">
+				<div class="tab" onclick="LoadSetup()">
 					<input type="radio" id="tab-1" name="tab-group-1" checked>
 					<label for="tab-1">Stream</label>
 					<div class="content">
@@ -44,9 +45,7 @@
 								(streamFrame) not visible.
 							-->
 							<button type="submit" value="Submit">Search Text</button>
-
-							<br><br><br>
-
+							<br>
 							<!--
 								All output from "Search.php" is output in the (searchOutput) frame.
 							-->
