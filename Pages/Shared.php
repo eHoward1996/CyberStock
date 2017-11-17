@@ -1,5 +1,8 @@
 <?php
 	use Spatie\TwitterStreamingApi\PublicStream;
+	use Scheb\YahooFinanceApi\ApiClient;
+	use Scheb\YahooFinanceApi\ApiClientFactory;
+	use GuzzleHttp\Client;
 
 	// MongoDB client
 	$m =  new MongoDB\Client;
@@ -38,12 +41,6 @@
 		$consumerKey,
 		$consumerSecret
 	);
-
-	// Classes for Yahoo Finance API.
-	// Guzzle is neceessary to use the YFA
-	use Scheb\YahooFinanceApi\ApiClient;
-	use Scheb\YahooFinanceApi\ApiClientFactory;
-	use GuzzleHttp\Client;
 
 	// When we look through "../../Misc/Fortune500Companies.csv"
 	// many of the companies in the file have extended company

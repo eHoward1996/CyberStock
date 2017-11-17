@@ -12,7 +12,8 @@
 		<center>
 			<img src="../Misc/CyberSymbol.png" alt="CyberStock" width="500px" height="17%"/>
 			<div class="tabs">
-				<div class="tab" onclick="LoadSetup()">
+
+				<div class="tab">
 					<input type="radio" id="tab-1" name="tab-group-1" checked>
 					<label for="tab-1">Stream</label>
 					<div class="content">
@@ -25,6 +26,7 @@
 						</form>
 					</div>
 				</div>
+
 				<div class="tab">
 					<input type="radio" id="tab-2" name="tab-group-1">
 					<label for="tab-2">Search</label>
@@ -51,6 +53,7 @@
 						</form>
 					</div>
 				</div>
+
 				<div class="tab">
 					<input type="radio" id="tab-3" name="tab-group-1">
 					<label for="tab-3">Graphs</label>

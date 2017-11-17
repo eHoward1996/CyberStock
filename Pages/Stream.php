@@ -5,12 +5,15 @@
 		<style> <?php include 'mainStyle.css';  ?></style>
 	</head>
 	<body>
+		<input type="submit" id="stopTrick" value="Stop" onclick="changeVal()"></input>
+		<input type="text" value="start" name="stopTrickVal" id="stopVal" style="display: none;"></input>
+
 		<div id="stream">
 			<?php
 				// Get all required packages.
 				require __DIR__. '../../vendor/autoload.php';
 				// Get variables we need in all pages.
-				include __DIR__. '../Shared.php';
+				require __DIR__. '../Shared.php';
 
 				// Use classes for the Twitter Streaming Api
 				use Spatie\TwitterStreamingApi\PublicStream;
@@ -88,7 +91,7 @@
 					)->startListening();
 				}
 
-				getInitialTweets();
+				// getInitialTweets();
 				startStream();
 			?>
 			<span></span>

@@ -5,6 +5,9 @@ function LoadSetup()	{
 	document.getElementById('streamFrame').submit();
 }
 
+var clicks = 0;
+var print = true;
+
 // This function allows all the tweets to
 // be added at the top of the stream as
 // opposed to the bottom. Also adds hyperlinks
@@ -18,6 +21,9 @@ function LoadSetup()	{
 // Formats tweet seperation with a line break (<br>)
 // and a horizontal rule (<hr>)
 function AddTweetsAtTop(username, text, stockName, stockSymbol, stockChange)	{
+	if (!print)	{
+		return;
+	}
 	var pTweet = document.createElement("p");
 	pTweet.className = "tweet";
 
@@ -54,4 +60,18 @@ function AddTweetsAtTop(username, text, stockName, stockSymbol, stockChange)	{
 
 	var stream = document.getElementById("stream");
 	stream.insertBefore(pTweet, stream.childNodes[0]);
+}
+
+function changeVal()	{
+	var stop = document.getElementById("stopTrick");
+	clicks++;
+
+	if (clicks % 2 == 1)	{
+		stop.value = "Start";
+		print = false;
+	}
+	else	{
+		stop.value = "Stop";
+		print = true;
+	}
 }
