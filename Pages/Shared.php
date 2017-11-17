@@ -39,6 +39,12 @@
 		$consumerSecret
 	);
 
+	// Classes for Yahoo Finance API.
+	// Guzzle is neceessary to use the YFA
+	use Scheb\YahooFinanceApi\ApiClient;
+	use Scheb\YahooFinanceApi\ApiClientFactory;
+	use GuzzleHttp\Client;
+
 	// When we look through "../../Misc/Fortune500Companies.csv"
 	// many of the companies in the file have extended company
 	// names like Apple Inc, or Alphabet Inc, or Accenture plc.
