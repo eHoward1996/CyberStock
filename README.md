@@ -1,8 +1,8 @@
 ﻿## Software Requirements:
-	**Xampp with PHP 7.1**
-	**MongoDB**
-	**MongoDB PHP Driverr**
-	**Composer**
+	** Xampp with PHP 7.1 **
+	** MongoDB **
+	** MongoDB PHP Driverr **
+	** Composer **
 
 
 # MongoDB Installation
