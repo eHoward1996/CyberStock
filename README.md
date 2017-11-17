@@ -1,12 +1,12 @@
-﻿##Software Requirements:
+﻿## Software Requirements:
 	**Xampp with PHP 7.1**
 	**MongoDB**
 	**MongoDB PHP Driverr**
 	**Composer**
 
 
-#MongoDB Installation
-##Follow these instructions to successfully setup MongoDB and the MongoDB-PHP Driver
+# MongoDB Installation
+## Follow these instructions to successfully setup MongoDB and the MongoDB-PHP Driver
 
 	1. Download and install the latest version of MongoDB Community Server (Currently 3.4.4)
 			```https://www.mongodb.com/download-center?jmp=nav#community```
