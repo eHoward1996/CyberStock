@@ -1,10 +1,8 @@
 <html>
 	<head>
-		<?php
-			// add links to external stylesheets and JavaScript
-			echo "<link rel='stylesheet' type='text/css' href='mainStyle.css' />";
-			echo "<script src='mainScripts.js'></script>";
-		?>
+		<!-- include links to CSS and JS Files -->
+		<script><?php include 'mainScripts.js'; ?></script>
+		<style> <?php include 'mainStyle.css';  ?></style>
 	</head>
 	<body>
 		<div id="stream">

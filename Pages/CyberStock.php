@@ -1,12 +1,10 @@
 <html>
 	<head>
-		<title>Twitter Fingerz</title>
-		<?php
-			// add links to external stylesheets and JavaScript
-			echo "<script src='../Pages/mainScripts.js'></script>"
-		?>
+		<title>CyberStock</title>
+		<!-- include links to CSS and JS Files -->
+		<script><?php include 'mainScripts.js'; ?></script>
+		<style> <?php include 'mainStyle.css';  ?></style>
 	</head>
-	<style><?php include 'mainStyle.css'; ?></style>
 	<!--
 		LoadSetup() submits the (streamFrame) form to start the stream on page load.
 	-->
