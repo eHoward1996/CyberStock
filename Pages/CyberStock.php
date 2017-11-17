@@ -22,7 +22,7 @@
 							When the page loads the (streamFrame) form is submitted, causing the initial
 							stream to start. All output is put into the (streamOutput) iframe.
 						-->
-						<form action="StreamAccess.php" method="POST" id="streamFrame" target="stream">
+						<form action="Stream.php" method="POST" id="streamFrame" target="stream">
 							<iframe name="stream" id="streamOutput" frameborder="0"></iframe>
 						</form>
 					</div>

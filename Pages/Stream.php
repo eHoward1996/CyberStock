@@ -55,7 +55,7 @@
 							  $str == 'Group' || $str == 'Technologies' || $str == 'Pharmaceuticals' ||
 							  $str == 'Class' || $str == 'Co' || $str == 'Group,' ||
 							  $str == 'A' || $str == 'Corp.' || $str == 'Systems' || $str == 'Inc.' ||
-							  $str == 'B'))	{
+							  $str == 'B' || $str == 'C' || $str == "Svc.Gp"))	{
 
 							if (strpos($str, ',') !== false)	{
 								$str = str_replace(',', '', $str);
@@ -69,10 +69,13 @@
 							if (strpos($str, '"') !== false)	{
 								$str = str_replace('"', '', $str);
 							}
-							$shortCompanyName .= $str . " ";
+							if (strpos($str, '\'s') !== false)	{
+								$str = str_replace('\'s', '', $str);
+							}
+							$shortCompanyName .= ' ' . $str;
 						}
 					}
-					return $shortCompanyName;
+					return trim($shortCompanyName);
 				}
 
 				// This function writes a JavaScript call
@@ -108,7 +111,8 @@
 				// information we want to write to the screen.
 				function printToScreen($u, $t)	{
 					$t = addslashes($t);
-					$t = preg_replace( "/\r|\n/", "", $t);
+					$t = preg_replace("/\r|\n/", "", $t);
+					$t = preg_replace("/&amp;+/", "&", $t);
 
 					$s = ''; // Company Symbol
 					$c = ''; // Percent Change in stock
@@ -117,23 +121,40 @@
 					$client = ApiClientFactory::createApiClient();
 
 					foreach ($GLOBALS['companyList'] as $company)	{
-						$shortCompanyName = trim(formatCompanyName($company['Name']));
+						$cNameInText = true; // Check if the company name is in the tweet
+						$shortCompanyName = formatCompanyName($company['Name']);
 
-						if ($company['Name'] == 'Alphabet')	{
+						if ($shortCompanyName == 'Alphabet')	{
 							$shortCompanyName = 'Google';
 						}
-						if ($company['Name'] == 'General Electric')	{
+						else if ($shortCompanyName == 'General Electric')	{
 							$shortCompanyName = 'GE';
 						}
-						if ($company['Name'] == 'General Motors')	{
+						else if ($shortCompanyName == 'General Motors')	{
 							$shortCompanyName = 'GM';
 						}
+						else if ($shortCompanyName == 'Chipotle Mexican Grill')	{
+							$shortCompanyName = 'Chipotle';
+						}
+						$nameToArr = preg_split("/[\s,]+/", strtoupper($shortCompanyName));
 
-						if (strpos(strtoupper($t), strtoupper($shortCompanyName) . " ") !== false)	{
+						$textToArr = $t;
+						$textToArr = preg_replace("/'s/", '', $textToArr);
+						$textToArr = preg_replace("#[[:punct:]]#", "", $textToArr);
+						$textToArr = preg_split("/[\s,]+/", strtoupper($textToArr));
+
+						foreach ($nameToArr as $name)	{
+							if (!in_array($name, $textToArr))	{
+								$cNameInText = false;
+								break;
+							}
+						}
+
+						if ($cNameInText)	{
 							$s = $company['Symbol'];
 							$q = $client->getQuote($s);
-							$c = $q->getPercentChange();
-							$n = $q->getName();
+							$c = round($q->getRegularMarketChangePercent(), 3);
+							$n = $q->getShortName();
 							break;
 						}
 					}
@@ -195,8 +216,7 @@
 				}
 
 				getInitialTweets();
-				startStream();
-
+				// startStream();
 			?>
 			<span></span>
 		</div>

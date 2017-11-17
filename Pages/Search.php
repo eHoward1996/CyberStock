@@ -101,7 +101,8 @@
 				// information we want to write to the screen.
 				function printToScreen($u, $t)	{
 					$t = addslashes($t);
-					$t = preg_replace( "/\r|\n/", "", $t);
+					$t = preg_replace("/\r|\n/", "", $t);
+					$t = preg_replace("/&amp;+/", "&", $t);
 
 					$s = ''; // Company Symbol
 					$c = ''; // Percent Change in stock
@@ -110,22 +111,39 @@
 					$client = ApiClientFactory::createApiClient();
 
 					foreach ($GLOBALS['companyList'] as $company)	{
-						$shortCompanyName = trim(formatCompanyName($company['Name']));
-						if ($company['Name'] == 'Alphabet')	{
+						$cNameInText = true; // Check if the company name is in the tweet
+						$shortCompanyName = formatCompanyName($company['Name']);
+
+						if ($shortCompanyName == 'Alphabet')	{
 							$shortCompanyName = 'Google';
 						}
-						if ($company['Name'] == 'General Electric')	{
+						else if ($shortCompanyName == 'General Electric')	{
 							$shortCompanyName = 'GE';
 						}
-						if ($company['Name'] == 'General Motors')	{
+						else if ($shortCompanyName == 'General Motors')	{
 							$shortCompanyName = 'GM';
 						}
+						else if ($shortCompanyName == 'Chipotle Mexican Grill')	{
+							$shortCompanyName = 'Chipotle';
+						}
+						$nameToArr = preg_split("/[\s,]+/", strtoupper($shortCompanyName));
 
-						if (strpos($t, $shortCompanyName) !== false)	{
+						$textToArr = $t;
+						$textToArr = preg_replace("/'s/", '', $textToArr);
+						$textToArr = preg_replace("#[[:punct:]]#", "", $textToArr);
+						$textToArr = preg_split("/[\s,]+/", strtoupper($textToArr));
+						foreach ($nameToArr as $name)	{
+							if (!in_array($name, $textToArr))	{
+								$cNameInText = false;
+								break;
+							}
+						}
+
+						if ($cNameInText)	{
 							$s = $company['Symbol'];
 							$q = $client->getQuote($s);
-							$c = $q->getPercentChange();
-							$n = $q->getName();
+							$c = round($q->getRegularMarketChangePercent(), 3);
+							$n = $q->getShortName();
 							break;
 						}
 					}

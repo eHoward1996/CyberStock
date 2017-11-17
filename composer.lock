@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "ef12579d9a838c00020b42c5c80ec945",
+    "content-hash": "846ca2b0640a9f97970db620c8d85773",
     "packages": [
         {
             "name": "fennb/phirehose",
@@ -343,16 +343,16 @@
         },
         {
             "name": "scheb/yahoo-finance-api",
-            "version": "v2.1.0",
+            "version": "v3.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/scheb/yahoo-finance-api.git",
-                "reference": "8b1ce5fdda0b7c6feb22d16e24abd09e7a0c96b3"
+                "reference": "8f70a4c1d7411e860c269f6c8599a462c2e19e65"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/scheb/yahoo-finance-api/zipball/8b1ce5fdda0b7c6feb22d16e24abd09e7a0c96b3",
-                "reference": "8b1ce5fdda0b7c6feb22d16e24abd09e7a0c96b3",
+                "url": "https://api.github.com/repos/scheb/yahoo-finance-api/zipball/8f70a4c1d7411e860c269f6c8599a462c2e19e65",
+                "reference": "8f70a4c1d7411e860c269f6c8599a462c2e19e65",
                 "shasum": ""
             },
             "require": {
@@ -387,7 +387,7 @@
                 "stock",
                 "yahoo"
             ],
-            "time": "2017-08-31T16:00:58+00:00"
+            "time": "2017-11-14T23:15:48+00:00"
         },
         {
             "name": "spatie/twitter-streaming-api",

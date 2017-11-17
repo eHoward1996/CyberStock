@@ -397,17 +397,17 @@
     },
     {
         "name": "scheb/yahoo-finance-api",
-        "version": "v2.1.0",
-        "version_normalized": "2.1.0.0",
+        "version": "v3.0.0",
+        "version_normalized": "3.0.0.0",
         "source": {
             "type": "git",
             "url": "https://github.com/scheb/yahoo-finance-api.git",
-            "reference": "8b1ce5fdda0b7c6feb22d16e24abd09e7a0c96b3"
+            "reference": "8f70a4c1d7411e860c269f6c8599a462c2e19e65"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/scheb/yahoo-finance-api/zipball/8b1ce5fdda0b7c6feb22d16e24abd09e7a0c96b3",
-            "reference": "8b1ce5fdda0b7c6feb22d16e24abd09e7a0c96b3",
+            "url": "https://api.github.com/repos/scheb/yahoo-finance-api/zipball/8f70a4c1d7411e860c269f6c8599a462c2e19e65",
+            "reference": "8f70a4c1d7411e860c269f6c8599a462c2e19e65",
             "shasum": ""
         },
         "require": {
@@ -418,7 +418,7 @@
             "phpunit/phpunit": "^5.7",
             "satooshi/php-coveralls": "^1.0"
         },
-        "time": "2017-08-31T16:00:58+00:00",
+        "time": "2017-11-14T23:15:48+00:00",
         "type": "library",
         "installation-source": "dist",
         "autoload": {
