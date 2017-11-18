@@ -91,7 +91,7 @@
 					)->startListening();
 				}
 
-				// getInitialTweets();
+				getInitialTweets();
 				startStream();
 			?>
 			<span></span>

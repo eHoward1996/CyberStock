@@ -58,7 +58,21 @@
 					<input type="radio" id="tab-3" name="tab-group-1">
 					<label for="tab-3">Graphs</label>
 					<div class="content">
-
+						<form action="Graph.php" method="POST" id="graphFrame" target="graph">
+							<input type="text" name="gText" style="width: 25%;">
+							<!--
+								The searchVisibility function toggles the display of the (streamFrame) and
+								(searchFrame) form. Initially, the (searchFrame) is not displayed but
+								(streamFrame) is. Pressing the button makes (searchFrame) visible and
+								(streamFrame) not visible.
+							-->
+							<button type="submit" value="Submit">Graph Term</button>
+							<br>
+							<!--
+								All output from "Search.php" is output in the (searchOutput) frame.
+							-->
+							<iframe name="graph" id="graphOutput" frameborder="0"></iframe>
+						</form>
 					</div>
 			   </div>
 			</div>
