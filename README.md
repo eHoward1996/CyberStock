@@ -27,7 +27,7 @@
  version of MongoDB that is installed on your machine. Since we are using
  MongoDB version 3.4 and PHP version 7.1 our MongoDB-PHP driver should be a
  minimum of version 1.2. We will be using version 1.2.8 found [here](http://pecl.php.net/package/mongodb).
- For a full compatibility list visit: [MongoDB Compatability	List](https://docs.mongodb.com/ecosystem/drivers/php/#compatibility)
+ For a full compatibility list visit: [MongoDB Compatability List](https://docs.mongodb.com/ecosystem/drivers/php/#compatibility)
 4. Click on the MongoDB-PHP driver that is compatible and navigate to 'DLL'
  list. There are 4 downloads for each version of PHP, categorized by your
  operating system's architecture and whether or not your version of PHP
