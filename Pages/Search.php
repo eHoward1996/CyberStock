@@ -14,15 +14,8 @@
 				ob_flush();
 				flush();
 
-				// Get all required packages.
-				require __DIR__. '../../vendor/autoload.php';
 				// Get variables we need in all pages.
-				include __DIR__. '../Shared.php';
-
-				// Use classes for the Twitter Streaming Api
-				// and Yahoo Finance Api. Guzzle is used in
-				// the Yahoo Finance Api
-				use Spatie\TwitterStreamingApi\PublicStream;
+				include __DIR__. '../../Misc/Shared.php';
 
 				// Persistant Variables from
 				// "../Shared.php"

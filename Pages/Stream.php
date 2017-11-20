@@ -10,22 +10,10 @@
 
 		<div id="stream">
 			<?php
-				// Get all required packages.
-				require __DIR__. '../../vendor/autoload.php';
 				// Get variables we need in all pages.
-				require __DIR__. '../Shared.php';
+				require __DIR__. '../../Misc/Shared.php';
 
-				// Use classes for the Twitter Streaming Api
-				use Spatie\TwitterStreamingApi\PublicStream;
-
-				//@washingtonpost, 2467791
-				//@business, 34713362
-				//@YahooFinance, 19546277
-				$UsersToFollow = array('follow' => [
-					'2467791',
-					'34713362',
-					'19546277'
-				]);
+				$UsersToFollow = $FollowedID;
 				// For whatever reason, sometimes we get duplicate results
 				// stored and retrieved from the DB. This array helps prevent
 				// duplication of results.
