@@ -59,15 +59,26 @@
 					<label for="tab-3">Graphs</label>
 					<div class="content">
 						<form action="Graph.php" method="POST" id="graphFrame" target="graph">
-							<input type="text" name="gText" style="width: 25%;">
+							<select name="gText">
+								<option selected="selected">Choose One</option>
+								<?php
+									include __DIR__. '../../Misc/Shared.php';
+									$sNames = $FollowedName;
+									foreach ($sNames['follow'] as $name)	{
+										echo '<option value="' . $name . '">' . $name . '</option>';
+										ob_flush();
+										flush();
+									}
+								?>
+							</select>
 							<!--
 								The searchVisibility function toggles the display of the (streamFrame) and
 								(searchFrame) form. Initially, the (searchFrame) is not displayed but
 								(streamFrame) is. Pressing the button makes (searchFrame) visible and
 								(streamFrame) not visible.
 							-->
-							<button type="submit" value="Submit">Graph Term</button>
-							<br>
+							<button type="submit" value="Submit">Graph Account</button>
+							<br><br><br>
 							<!--
 								All output from "Search.php" is output in the (searchOutput) frame.
 							-->
