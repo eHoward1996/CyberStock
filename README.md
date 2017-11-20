@@ -42,7 +42,7 @@
 6. The downloaded zip file will contain a dll file "php_mongodb.dll" which should
  be placed within your Xampp install folder. Ex. "C:\xampp\php\ext"
 7. Next add the extension to Xampp by going to "C:\xampp\php" and opening "php.ini",
- 'Ctrl-F' to search for "extension=" and add this line within the
+ <kbd>Ctrl</kbd> + <kbd>F</kbd> to search for "extension=" and add this line within the
  extension section: "extension=php_mongodb.dll"
 8. Modify the PATH variables for both MongoDB and the MongoDB-PHP driver.
  Go to control panel, and open system settings. Click on the 'Advanced' tab and then click on 'Environment
@@ -55,13 +55,13 @@
  version of the MongoDB-PHP driver.
 
 
-## Follow these instructions to successfully setup MongoDB
+## Setting Up MongoDB
 1. After MongoDB is installed open a command prompt window and type
- <pre><code>mongod</code></pre>.
+ <pre><code>mongod</code></pre>
  Let the window load the server you will see "waiting for connection on port xxxxxx".
  **LEAVE THIS WINDOW OPEN WHILE RUNNING THE DATABASE.**
 2. Open another command prompt window and type <pre><code>mongo</code></pre>
-3. In the command prompt type <pre><code>use Tweetdemo</code></pre>.
+3. In the command prompt type <pre><code>use Tweetdemo</code></pre>
  This will create the database and switch to the
  Tweetdemo database.
 4. In the command prompt type <pre><code>db.createCollection('tweetfeed')</code></pre>
@@ -90,8 +90,8 @@
  begin the stream of tweets
 
 **Note: When you want to add another you must first get the userID
-from gettwitterid.com. Then add to the "$Usertofollow" variable in
-StreamAccess.php file Note: We realize that this project only needs to get
+from gettwitterid.com. Then add to the "$FollowedID" variable in
+"Misc/Shared.php" file Note: We realize that this project only needs to get
 original tweets from users, and not mentions and retweets by other people. Our
 stream will only display orignial tweets in future iterations.         We
 included this example of the stream to show that we have made progress in being
