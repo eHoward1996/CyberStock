@@ -47,6 +47,7 @@
 				startStream();
 			?>
 			<span></span>
+			<div class="loader"></div>
 		</div>
 	</body>
 </html>

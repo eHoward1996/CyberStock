@@ -34,8 +34,7 @@
  utilizes thread safety. To find this information go to your web browser and
  in the address bar type: "localhost/phpinfo.php".
  > If the file does not exist, navigate to "C:\path\to\xampp\htdocs" and create a file
- named "phpinfo.php". Inside of that file put the following code
-	<pre><code><?php phpinfo(); ?></code></pre>
+ named "phpinfo.php". Inside of that file put the following code <pre><code><?php phpinfo(); ?></code></pre>
 5. <kbd>Ctrl</kbd> + <kbd>F</kbd> search for "Thread Safety" to determine whether it is enabled or disabled on your machine.
  If it is enabled choose a MongoDB-PHP driver link that contains "(TS)" and if your installation
  of Windows is 32-bit make sure that it also contains "x86".

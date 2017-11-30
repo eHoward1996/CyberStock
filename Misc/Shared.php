@@ -18,7 +18,7 @@
 	$tweetFeedFirstTweets = iterator_to_array($tweetFeed->find(
 		[],
 		[
-			'limit'     => 1000,
+			'limit'     => 100,
 			'maxTimeMS' => 1500
 		]
 	));
