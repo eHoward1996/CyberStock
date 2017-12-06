@@ -15,18 +15,25 @@
 	// Create a list of the first 1000 records. Set
 	// a max response time (maxTimeMS) of 1.5 seconds.
 	$tweetFeed = $db->selectCollection('tweetfeed');
-	$tweetFeedFirstTweets = iterator_to_array($tweetFeed->find(
-		[],
-		[
-			'limit'     => 100,
-			'maxTimeMS' => 1500
-		]
-	));
+	$options = array(
+    	"sort" => array("Time" => -1),
+    	"limit" => 100
+	);
+	$tweetFeedFirstTweets = iterator_to_array($tweetFeed->find([], $options));
 
 	// Get reference to the companies collection.
 	// Create a list of all companies in the collection.
 	$companies = $db->selectCollection('companies');
 	$fortune5CompanyList = iterator_to_array($companies->find());
+
+	$follow = $db->selectCollection('follow');
+	$ListOfFollows = iterator_to_array($follow->find());
+	$FollowedNames = array();
+	$FollowedIDs = array();
+	foreach ($ListOfFollows as $f) {
+		array_push($FollowedNames, $f['name']);
+		array_push($FollowedIDs, $f['id']);
+	}
 
 	// Twitter Stream variables
 	$consumerKey    	= '2iwAwSG6tzD12EtWSI7QUc8H2';
@@ -57,7 +64,7 @@
 				  $str == 'Group' || $str == 'Technologies' || $str == 'Pharmaceuticals' ||
 				  $str == 'Class' || $str == 'Co' || $str == 'Group,' ||
 				  $str == 'A' || $str == 'Corp.' || $str == 'Systems' || $str == 'Inc.' ||
-				  $str == 'B' || $str == 'C' || $str == "Svc.Gp"))	{
+				  $str == 'B' || $str == 'C' || $str == 'Financial' || $str == 'Svc.Gp'))	{
 
 				if (strpos($str, ',') !== false)	{
 					$str = str_replace(',', '', $str);
@@ -88,13 +95,17 @@
 	// flush so we can see results immeadiately.
 	function writeScript($u, $t, $n, $s, $c)	{
 		if ($u != '' && $t != '')	{
+			$f = in_array("@" . $u, $GLOBALS['FollowedNames']) ? true : false;
+			$i = $GLOBALS['FollowedIDs'][array_search($u, $GLOBALS['FollowedNames'])];
 			$script = 	"<script>
 							AddTweetsAtTop(\"" .
 								$u . "\", \"" .
 								$t . "\", \"" .
 								$n . "\", \"" .
 								$s . "\", \"" .
-								$c . "\"" .
+								$c . "\", \"" .
+								$f . "\", \"" .
+								$i . "\"" .
 							");
 						</script>\n";
 			echo $script;
@@ -162,25 +173,4 @@
 		}
 		writeScript($u, $t, $n, $s, $c);
 	}
-
-	///@washingtonpost, 2467791
-	//@business, 34713362
-	//@YahooFinance, 19546277
-	$FollowedID = array(
-		'follow' => [
-			'2467791',
-			'34713362',
-			'19546277'
-		]
-	);
-	//@washingtonpost, 2467791
-	//@business, 34713362
-	//@YahooFinance, 19546277
-	$FollowedName = array(
-		'follow' => [
-			'@washingtonpost',
-			'@business',
-			'@YahooFinance'
-		]
-	);
 ?>

@@ -4,6 +4,7 @@
 		<!-- include links to CSS and JS Files -->
 		<script><?php include 'mainScripts.js'; ?></script>
 		<style> <?php include 'mainStyle.css';  ?></style>
+		<?php include __DIR__. '../../Misc/Shared.php'; ?>
 	</head>
 	<!--
 		LoadSetup() submits the (streamFrame) form to start the stream on page load.
@@ -62,9 +63,7 @@
 							<select name="gText">
 								<option selected="selected">Choose One</option>
 								<?php
-									include __DIR__. '../../Misc/Shared.php';
-									$sNames = $FollowedName;
-									foreach ($sNames['follow'] as $name)	{
+									foreach ($FollowedNames as $name)	{
 										echo '<option value="' . $name . '">' . $name . '</option>';
 										ob_flush();
 										flush();

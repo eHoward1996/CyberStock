@@ -20,7 +20,7 @@ var print = true;
 // there was an increase or decrease in sales.
 // Formats tweet seperation with a line break (<br>)
 // and a horizontal rule (<hr>)
-function AddTweetsAtTop(username, text, stockName, stockSymbol, stockChange)	{
+function AddTweetsAtTop(username, text, stockName, stockSymbol, stockChange, inFollowList, userID)	{
 	if (!print)	{
 		return;
 	}
@@ -40,9 +40,20 @@ function AddTweetsAtTop(username, text, stockName, stockSymbol, stockChange)	{
 	 	a.setAttribute("target", "_blank");
 	}
 
-	var tweet = document.createTextNode(username + " : " + text);
-	var stock = document.createElement("span");
+	var followAction = document.createElement("button");
+	followAction.innerHTML = "+";
+	if (inFollowList)	{
+		followAction.innerHTML = "-";
+	}
+	followAction.addEventListener("click", function() {
+		performAction(username, userID, followAction.innerHTML == "+" ? "add" : "remove");
+	});
 
+	var tweet = document.createElement("span");
+	tweet.appendChild(document.createTextNode(username + " : " + text));
+	tweet.setAttribute('style', 'margin-left: 2em;');
+
+	var stock = document.createElement("span");
 	if (stockName != '' && stockSymbol != '' && stockChange != '')	{
 		stock.appendChild(document.createTextNode("  ||  " + stockName + "  (" + stockSymbol + ")  " + stockChange + "%  ||"));
 		stock.setAttribute('style', 'color: green;');
@@ -52,6 +63,7 @@ function AddTweetsAtTop(username, text, stockName, stockSymbol, stockChange)	{
 		}
 	}
 
+	pTweet.appendChild(followAction);
 	pTweet.appendChild(tweet);
 	pTweet.appendChild(a);
 	pTweet.appendChild(stock);
@@ -73,5 +85,33 @@ function changeVal()	{
 	else	{
 		stop.value = "Stop";
 		print = true;
+	}
+}
+
+function performAction(username, userID, actionItem)	{
+	if (confirm('Are you sure you want to ' + actionItem + ' user "' + username + '"?')) {
+		var actionData = document.createElement("p");
+		var user = document.createElement("input");
+		var id = document.createElement("input");
+		var action = document.createElement("input");
+
+		actionData.setAttribute('id', 'actionData');
+		user.setAttribute('name', 'user');
+		id.setAttribute('name', 'id');
+		action.setAttribute('name', 'action');
+
+		user.setAttribute('value', username);
+		id.setAttribute('value', userID);
+		action.setAttribute('value', actionItem);
+
+		actionData.appendChild(user);
+		actionData.appendChild(id);
+		actionData.appendChild(action);
+		actionData.setAttribute('style', 'display: inline;');
+
+		var stream = document.getElementById("stream");
+		stream.insertBefore(actionData, stream.childNodes[0]);
+
+		document.getElementById('stream').submit();
 	}
 }
