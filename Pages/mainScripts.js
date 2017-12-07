@@ -6,6 +6,7 @@ function LoadSetup()	{
 }
 
 var clicks = 0;
+var clunks = 0;
 var print = true;
 
 // This function allows all the tweets to
@@ -24,6 +25,7 @@ function AddTweetsAtTop(username, text, stockName, stockSymbol, stockChange, inF
 	if (!print)	{
 		return;
 	}
+
 	var pTweet = document.createElement("p");
 	pTweet.className = "tweet";
 
@@ -84,6 +86,18 @@ function changeVal()	{
 	}
 	else	{
 		stop.value = "Stop";
+		print = true;
+	}
+}
+
+function stopSearch()	{
+	var stopS = document.getElementById("stopZ");
+	clunks++;
+
+	if (clunks % 2 == 1)	{
+		print = false;
+	}
+	else	{
 		print = true;
 	}
 }
