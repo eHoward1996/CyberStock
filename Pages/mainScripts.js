@@ -7,6 +7,7 @@ function LoadSetup()	{
 
 var clicks = 0;
 var clunks = 0;
+var start = true;
 var print = true;
 
 // This function allows all the tweets to
@@ -92,14 +93,8 @@ function changeVal()	{
 
 function stopSearch()	{
 	var stopS = document.getElementById("stopZ");
-	clunks++;
-
-	if (clunks % 2 == 1)	{
-		print = false;
-	}
-	else	{
-		print = true;
-	}
+	
+	$('#searchField').val('');
 }
 
 function performAction(username, userID, actionItem)	{

@@ -2,6 +2,7 @@
 	<head>
 		<title>CyberStock</title>
 		<!-- include links to CSS and JS Files -->
+		<script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
 		<script><?php include 'mainScripts.js'; ?>
 
 			
@@ -30,6 +31,37 @@ function closeNav() {
 		</script>
 		<style> <?php include 'mainStyle.css';  ?>
 
+.buttsty {
+   border-top: 1px solid #96d1f8;
+   background: #65a9d7;
+   background: -webkit-gradient(linear, left top, left bottom, from(#3e779d), to(#65a9d7));
+   background: -webkit-linear-gradient(top, #3e779d, #65a9d7);
+   background: -moz-linear-gradient(top, #3e779d, #65a9d7);
+   background: -ms-linear-gradient(top, #3e779d, #65a9d7);
+   background: -o-linear-gradient(top, #3e779d, #65a9d7);
+   padding: 9.5px 19px;
+   -webkit-border-radius: 8px;
+   -moz-border-radius: 8px;
+   border-radius: 8px;
+   -webkit-box-shadow: rgba(0,0,0,1) 0 1px 0;
+   -moz-box-shadow: rgba(0,0,0,1) 0 1px 0;
+   box-shadow: rgba(0,0,0,1) 0 1px 0;
+   text-shadow: rgba(0,0,0,.4) 0 1px 0;
+   color: white;
+   font-size: 16px;
+   font-family: 'Lucida Grande', Helvetica, Arial, Sans-Serif;
+   text-decoration: none;
+   vertical-align: middle;
+   }
+.buttsty:hover {
+   border-top-color: #28597a;
+   background: #28597a;
+   color: #ccc;
+   }
+.buttsty:active {
+   border-top-color: #1b435e;
+   background: #1b435e;
+   }
 		</style>
 		<?php include __DIR__. '../../Misc/Shared.php'; ?>
 	</head>
@@ -42,22 +74,33 @@ function closeNav() {
 
   <div class="w3-sidebar w3-bar-block w3-card w3-animate-left" style="display:none" id="mySidebar">
   <button class="w3-bar-item w3-button w3-large" onclick="w3_close()">Close &times;</button>
-  <a href="http://localhost/src_tf/CyberStock/Pages/Home.php" class="w3-bar-item w3-button">Home</a>
-  <a href="http://localhost/src_tf/CyberStock/Pages/StreamPage.php" class="w3-bar-item w3-button">Stream</a>
-  <a href="http://localhost/src_tf/CyberStock/Pages/GraphPage.php" class="w3-bar-item w3-button">Statistical Analysis</a>
+  <a href="Home.php" class="w3-bar-item w3-button">Home</a>
+  <a href="StreamPage.php" class="w3-bar-item w3-button">Stream</a>
+  <a href="GraphPage.php" class="w3-bar-item w3-button">Statistical Analysis</a>
   
 </div>
  
 <div id="main">
 
 <div class="w3-teal">
-  <button id="openNav" class="w3-button w3-teal w3-xlarge" onclick="w3_open()">&#9776;</button>
+  <button  style="padding-top: 27px;" id="openNav" class="w3-button w3-teal w3-xlarge" onclick="w3_open()">&#9776;</button>
+   <img align="right" src="../Misc/CyberSymbol.png" alt="CyberStock" width="15%" height="10%">
   <div class="w3-container">
   </div>
 </div>
-<body onload="LoadSetup()" style="background: linear-gradient(white, #0086b3);">
+<body onload="LoadSetup()" style="background: #e5f1ed;">
 		<center>
-			<img src="../Misc/CyberSymbol.png" alt="CyberStock" width="500px" height="20%"/>
+			 <!-- START Worden Top Gainers and Losers Ticker Widget -->
+	<script src="http://widgets.freestockcharts.com/js/jquery-1.3.1.min.js" type="text/javascript"></script> <script src="http://widgets.freestockcharts.com/script/WBIHorizontalTicker2.js?ver=12334" type="text/javascript"></script> <link href="http://widgets.freestockcharts.com/WidgetServer/WBITickerblue.css" rel="stylesheet" type="text/css" />
+<script>
+    var gainerTick = new WBIHorizontalTicker('gainers');
+    gainerTick.start();
+    var loserTick = new WBIHorizontalTicker('losers');
+    loserTick.start();
+	</script> <!-- End Scrolling Ticker Widget -->
+			<br><br>
+			<img src="../Misc/search1.png"  width="20%" height="15%">
+			<p "text-align: center;" style= "font-family: impact; color: #000; font-size: 30px ">Search for tweets on your preferred company</p>
 
 		
 				
@@ -68,15 +111,17 @@ function closeNav() {
 						-->
 						
 							<form action="Search.php" method="POST" id="searchFrame" target="search">
-							<button onclick="ChangeVal()">Stop</button>
-							<input type="text" name="sText" style="width: 25%;">
+							
+							<input id="searchField" type="text" name="sText" style="width: 25%;">
 							<!--
 								The searchVisibility function toggles the display of the (streamFrame) and
 								(searchFrame) form. Initially, the (searchFrame) is not displayed but
 								(streamFrame) is. Pressing the button makes (searchFrame) visible and
 								(streamFrame) not visible.
 							-->
-							<button type="submit" value="Submit">Search Text</button>
+							<br><br>
+							<button style="align: left;" class="buttsty" onclick="stopSearch()">Stop</button>
+							<button class="buttsty" type="submit" value="Submit">Search Text</button>
 							<br>
 							<!--
 								All output from "Search.php" is output in the (searchOutput) frame.

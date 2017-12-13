@@ -19,5 +19,7 @@
 			]);
 		}
 	}
+	/**
 	echo "<script>document.getElementById('return').submit();</script>";
+	*/
 ?>

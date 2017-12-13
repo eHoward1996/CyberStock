@@ -47,33 +47,43 @@ function closeNav() {
 
   <div class="w3-sidebar w3-bar-block w3-card w3-animate-left" style="display:none" id="mySidebar">
   <button class="w3-bar-item w3-button w3-large" onclick="w3_close()">Close &times;</button>
-  <a href="http://localhost/src_tf/CyberStock/Pages/Home.php" class="w3-bar-item w3-button">Home</a>
-  <a href="http://localhost/src_tf/CyberStock/Pages/SearchPage.php" class="w3-bar-item w3-button">Search</a>
-  <a href="http://localhost/src_tf/CyberStock/Pages/GraphPage.php" class="w3-bar-item w3-button">Statistical Analysis</a>
+  <a href="Home.php" class="w3-bar-item w3-button">Home</a>
+  <a href="SearchPage.php" class="w3-bar-item w3-button">Search</a>
+  <a href="GraphPage.php" class="w3-bar-item w3-button">Statistical Analysis</a>
   
 </div>
  
 <div id="main">
 
 <div class="w3-teal">
-  <button id="openNav" class="w3-button w3-teal w3-xlarge" onclick="w3_open()">&#9776;</button>
+  <button  style="padding-top: 27px;" id="openNav" class="w3-button w3-teal w3-xlarge" onclick="w3_open()">&#9776;</button>
+   <img align="right" src="../Misc/CyberSymbol.png" alt="CyberStock" width="15%" height="10%">
   <div class="w3-container">
   </div>
 </div>
 	<!--
 		LoadSetup() submits the (streamFrame) form to start the stream on page load.
 	-->
-<body onload="LoadSetup()" style="background:#cbf7cd9c;">
+<body onload="LoadSetup()" style="background:#e5f1ed;">
 		<center>
-			<img src="../Misc/CyberSymbol.png" alt="CyberStock" width="500px" height="20%"/>
+			 <!-- START Worden Top Gainers and Losers Ticker Widget -->
+			<script src="http://widgets.freestockcharts.com/js/jquery-1.3.1.min.js" type="text/javascript"></script> <script src="http://widgets.freestockcharts.com/script/WBIHorizontalTicker2.js?ver=12334" type="text/javascript"></script> <link href="http://widgets.freestockcharts.com/WidgetServer/WBITickerblue.css" rel="stylesheet" type="text/css" />
+		<script>
+   			var gainerTick = new WBIHorizontalTicker('gainers');
+    		gainerTick.start();
+    		var loserTick = new WBIHorizontalTicker('losers');
+   		 	loserTick.start();
+		</script> <!-- End Scrolling Ticker Widget -->
+			<br><br>
 
-					
+					<p "text-align: center;" style= "font-family: impact; color: #000; font-size: 30px ">Livestream of Tweets</p>
+					<br><br>
 						<!--
 							When the page loads the (streamFrame) form is submitted, causing the initial
 							stream to start. All output is put into the (streamOutput) iframe.
 						-->
 						<form action="Stream.php" method="POST" id="streamFrame" target="stream">
-							<iframe name="stream" id="streamOutput" frameborder="0"></iframe>
+							<iframe style="background-color: #87c3eb70;" name="stream" id="streamOutput" frameborder="0"></iframe>
 						</form>
 					
 

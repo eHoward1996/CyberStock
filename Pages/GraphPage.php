@@ -27,8 +27,41 @@ function closeNav() {
 }
 
 		</script>
-		<style> <?php include 'mainStyle.css';  ?></style>
-		
+		<style> <?php include 'mainStyle.css';  ?>
+			
+.buttsty {
+   border-top: 1px solid #96d1f8;
+   background: #65a9d7;
+   background: -webkit-gradient(linear, left top, left bottom, from(#3e779d), to(#65a9d7));
+   background: -webkit-linear-gradient(top, #3e779d, #65a9d7);
+   background: -moz-linear-gradient(top, #3e779d, #65a9d7);
+   background: -ms-linear-gradient(top, #3e779d, #65a9d7);
+   background: -o-linear-gradient(top, #3e779d, #65a9d7);
+   padding: 9.5px 19px;
+   -webkit-border-radius: 8px;
+   -moz-border-radius: 8px;
+   border-radius: 8px;
+   -webkit-box-shadow: rgba(0,0,0,1) 0 1px 0;
+   -moz-box-shadow: rgba(0,0,0,1) 0 1px 0;
+   box-shadow: rgba(0,0,0,1) 0 1px 0;
+   text-shadow: rgba(0,0,0,.4) 0 1px 0;
+   color: white;
+   font-size: 16px;
+   font-family: 'Lucida Grande', Helvetica, Arial, Sans-Serif;
+   text-decoration: none;
+   vertical-align: middle;
+   }
+.buttsty:hover {
+   border-top-color: #28597a;
+   background: #28597a;
+   color: #ccc;
+   }
+.buttsty:active {
+   border-top-color: #1b435e;
+   background: #1b435e;
+   }
+		</style>
+		<?php include __DIR__. '../../Misc/Shared.php'; ?>
 	</head>
 	<!--
 		LoadSetup() submits the (streamFrame) form to start the stream on page load.
@@ -39,32 +72,43 @@ function closeNav() {
 
   <div class="w3-sidebar w3-bar-block w3-card w3-animate-left" style="display:none" id="mySidebar">
   <button class="w3-bar-item w3-button w3-large" onclick="w3_close()">Close &times;</button>
- <a href="http://localhost/src_tf/CyberStock/Pages/Home.php" class="w3-bar-item w3-button">Home</a>
-  <a href="http://localhost/src_tf/CyberStock/Pages/StreamPage.php" class="w3-bar-item w3-button">Stream</a>
-  <a href="http://localhost/src_tf/CyberStock/Pages/SearchPage.php" class="w3-bar-item w3-button">Search</a>
+ <a href="Home.php" class="w3-bar-item w3-button">Home</a>
+  <a href="StreamPage.php" class="w3-bar-item w3-button">Stream</a>
+  <a href="SearchPage.php" class="w3-bar-item w3-button">Search</a>
   
 </div>
  
 <div id="main">
 
 <div class="w3-teal">
-  <button id="openNav" class="w3-button w3-teal w3-xlarge" onclick="w3_open()">&#9776;</button>
+  <button style="padding-top: 27px;" id="openNav" class="w3-button w3-teal w3-xlarge" onclick="w3_open()">&#9776;</button>
+  <img align="right" src="../Misc/CyberSymbol.png" alt="CyberStock" width="15%" height="10%">
   <div class="w3-container">
   </div>
 </div>
 
-<body onload="LoadSetup()" style="background: linear-gradient(white, #0086b3);">
+<body onload="LoadSetup()" style="background: #e5f1ed;">
 		<center>
-			<img src="../Misc/CyberSymbol.png" alt="CyberStock" width="500px" height="20%"/>
+			 <!-- START Worden Top Gainers and Losers Ticker Widget -->
+			<script src="http://widgets.freestockcharts.com/js/jquery-1.3.1.min.js" type="text/javascript"></script> <script src="http://widgets.freestockcharts.com/script/WBIHorizontalTicker2.js?ver=12334" type="text/javascript"></script> <link href="http://widgets.freestockcharts.com/WidgetServer/WBITickerblue.css" rel="stylesheet" type="text/css" />
+		<script>
+    		var gainerTick = new WBIHorizontalTicker('gainers');
+    		gainerTick.start();
+    		var loserTick = new WBIHorizontalTicker('losers');
+   			 loserTick.start();
+		</script> <!-- End Scrolling Ticker Widget -->
+			<img src="../Misc/stats.png"  width="50%" height="250">
 
-					
+									<!-- TradingView Widget BEGIN -->
+				
+				<p style= "font-family: impact; color: #000; font-size: 30px ">Select below to see statistics on your favorite account. </p>
+<!-- TradingView Widget END -->
+
 						<form action="Graph.php" method="POST" id="graphFrame" target="graph">
 							<select name="gText">
 								<option selected="selected">Choose One</option>
 								<?php
-									include __DIR__. '../../Misc/Shared.php';
-									$sNames = $FollowedName;
-									foreach ($sNames['follow'] as $name)	{
+									foreach ($FollowedNames as $name)	{
 										echo '<option value="' . $name . '">' . $name . '</option>';
 										ob_flush();
 										flush();
@@ -77,14 +121,15 @@ function closeNav() {
 								(streamFrame) is. Pressing the button makes (searchFrame) visible and
 								(streamFrame) not visible.
 							-->
-							<button type="submit" value="Submit">Graph Account</button>
+
+							<button class="buttsty" type="submit" value="Submit" 0000> Graph Account</button>
 							<br><br><br>
 							<!--
 								All output from "Search.php" is output in the (searchOutput) frame.
 							-->
+							
 							<iframe name="graph" id="graphOutput" frameborder="0"></iframe>
 						</form>
-				
 		</center>
 	</body>
 </html>

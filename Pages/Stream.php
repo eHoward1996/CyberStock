@@ -51,7 +51,7 @@
 					// this function is called. We want to
 					// extract the "Username" and "Text" from
 					// the tweet. Then we want to print that
-					// information. We also wanr to add the tweet
+					// information. We also want to add the tweet
 					// to our DB if the "Username" is in our list of
 					// people to follow.
 					function streaming_callback(array $tweet) {
