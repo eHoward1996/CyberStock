@@ -5,7 +5,7 @@
 		<script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
 		<script><?php include 'mainScripts.js'; ?>
 
-			
+
 			function w3_open() {
     document.getElementById("mySidebar").style.display = "block";
     document.getElementById("main").style.marginLeft = "25%";
@@ -22,7 +22,7 @@ function openNav() {
     document.getElementById("sideNavigation").style.width = "250px";
     document.getElementById("main").style.marginLeft = "250px";
 }
- 
+
 function closeNav() {
     document.getElementById("sideNavigation").style.width = "0";
     document.getElementById("main").style.marginLeft = "0";
@@ -70,16 +70,16 @@ function closeNav() {
 	-->
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="w3.css">
-	
+
 
   <div class="w3-sidebar w3-bar-block w3-card w3-animate-left" style="display:none" id="mySidebar">
   <button class="w3-bar-item w3-button w3-large" onclick="w3_close()">Close &times;</button>
   <a href="Home.php" class="w3-bar-item w3-button">Home</a>
   <a href="StreamPage.php" class="w3-bar-item w3-button">Stream</a>
   <a href="GraphPage.php" class="w3-bar-item w3-button">Statistical Analysis</a>
-  
+
 </div>
- 
+
 <div id="main">
 
 <div class="w3-teal">
@@ -101,34 +101,29 @@ function closeNav() {
 			<br><br>
 			<img src="../Misc/search1.png"  width="20%" height="15%">
 			<p "text-align: center;" style= "font-family: impact; color: #000; font-size: 30px ">Search for tweets on your preferred company</p>
+			<!--
+				When the user submits (searchFrame) form, the program loads a stream based on the
+				search term entered into the search box (sText). The form is submitted by pressing
+				the button in the (searchFrame form).
+			-->
 
-		
-				
-						<!--
-							When the user submits (searchFrame) form, the program loads a stream based on the
-							search term entered into the search box (sText). The form is submitted by pressing
-							the button in the (searchFrame form).
-						-->
-						
-							<form action="Search.php" method="POST" id="searchFrame" target="search">
-							
-							<input id="searchField" type="text" name="sText" style="width: 25%;">
-							<!--
-								The searchVisibility function toggles the display of the (streamFrame) and
-								(searchFrame) form. Initially, the (searchFrame) is not displayed but
-								(streamFrame) is. Pressing the button makes (searchFrame) visible and
-								(streamFrame) not visible.
-							-->
-							<br><br>
-							<button style="align: left;" class="buttsty" onclick="stopSearch()">Stop</button>
-							<button class="buttsty" type="submit" value="Submit">Search Text</button>
-							<br>
-							<!--
-								All output from "Search.php" is output in the (searchOutput) frame.
-							-->
-							<iframe name="search" id="searchOutput" frameborder="0"></iframe>
-						</form>
-				
+			<form action="Search.php" method="POST" id="searchFrame" target="search">
+				<input id="searchField" type="text" name="sText" style="width: 25%;">
+				<!--
+					The searchVisibility function toggles the display of the (streamFrame) and
+					(searchFrame) form. Initially, the (searchFrame) is not displayed but
+					(streamFrame) is. Pressing the button makes (searchFrame) visible and
+					(streamFrame) not visible.
+				-->
+				<br><br>
+				<button style="align: left;" class="buttsty" onclick="stopSearch()">Stop</button>
+				<button class="buttsty" type="submit" value="Submit">Search Text</button>
+				<br>
+				<!--
+					All output from "Search.php" is output in the (searchOutput) frame.
+				-->
+				<iframe name="search" id="searchOutput" frameborder="0"></iframe>
+			</form>
 		</center>
 	</body>
 </html>

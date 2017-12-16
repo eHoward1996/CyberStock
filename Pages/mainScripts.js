@@ -93,7 +93,7 @@ function changeVal()	{
 
 function stopSearch()	{
 	var stopS = document.getElementById("stopZ");
-	
+
 	$('#searchField').val('');
 }
 
