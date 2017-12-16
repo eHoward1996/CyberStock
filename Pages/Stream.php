@@ -61,7 +61,7 @@
 						printToScreen($username, $text);
 
 						//Insert tweet into database
-						if (in_array($username, $GLOBALS['FollowedNames']))	{
+						if (in_array("@" . $username, $GLOBALS['FollowedNames']))	{
 							$GLOBALS['tweetFeed']->insertOne([
 								"Screen_Name" => $username,
 								"Screen_Id" => $tweet['user']['id'],
